@@ -2,8 +2,8 @@
 session_start();
 
 // Check if the user is logged in and has a role set in the session
-if(!isset($_SESSION['ROLE'])) {
-    header("Location: login.php");
+if(!isset($_SESSION['ROLE'] )) {
+    header("Location: \fts\php\login.php");
     exit();
 }
 ?>
@@ -39,21 +39,38 @@ if(!isset($_SESSION['ROLE'])) {
             </script>
         </nav>
     <div class="sidebar">
-        <ul class="list">
-            <li class="item "><a href="main-dashboard.html" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>MAIN DASHBOARD</a></li>
-            <li class="item "><a href="main-dashboard.html" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>DASHBOARD</a></li>
-            <li class="item"><a href="viewsales.php" class="itemLink"><i class="fas fa-product" id="icon"></i>SALES     <i class="fas fa-angle-right" id="angles"></i></a></li>
-            <li class="item"><a href="viewstock.php" class="hov itemLink" ><i class="fas fa-product-hunt" id="icon"></i>STOCK IN<i class="fas fa-angle-down" id="angles"></i></a>
-              <ul class="sublist">
-                <li class="item"><a href="addstock.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add New</a></li>
-                <li class="item"><a href="viewstock.php" class="hov sublink"><i class="fas fa-eye" id="icon"></i>View Stock</a></li>
-              </ul>
+    <ul class="list">
+        <?php if($_SESSION['ROLE'] == 'admin' || $_SESSION['ROLE'] == 'ceo') {
+            echo'
+            <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>MAIN DASHBOARD</a></li>'; } ?>
+            <li class="item "><a href="hospital-dashboard.php" class="itemLink "><i class="fas fa-hospital" id="icon"></i>DASHBOARD</a></li>
+            <li class="item"><a href="#" class="itemLink"  onclick="hovver()"><i class="fas fa-dollar-sign" id="icon"></i><i class="fa fa-money" aria-hidden="true"></i>SALES</a>
+                <ul class="sublist">
+                    <li class="item"><a href="add-sales.php" class="sublink"><i class="fa fa-plus-circle" id="icon"></i>Add New</a></li>
+                    <li class="item"><a href="viewsales.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Sales</a></li>
+                </ul>
+                <script>
+                    function hovver(){
+                    document.querySelector('.sublist').style.display ='block';
+                    }
+                </script>
+            </li> 
+            <li class="item"><a href="#" class="itemLink" onclick="hovver2()"><i class="fas fa-product" id="icon"></i>STOCK IN      <i class="fas fa-angle-right" id="angles"></i></a>
+                <ul class="sublist2">
+                    <li class="item"><a href="addstock.php" class="sublink"><i class="fas fa-users" id="icon"></i>Add New</a></li>
+                    <li class="item"><a href="viewstock.php" class=" hov sublink"><i class="fas fa-users" id="icon"></i>View Stock</a></li>
+                </ul>
+                <script>
+                    function hovver2(){
+                    document.querySelector('.sublist2').style.display ='block';
+                    }
+                </script> 
             </li>
             <li class="item"><a href="#" class="itemLink"><i class="fas fa-users" id="icon"></i>LOW STOCK</a></li>
             <li class="item"><a href="#" class="itemLink"><i class="fas fa-users" id="icon"></i>PHARMACY</a></li>
             <li class="item"><a href="#" class="itemLink"><i class="fas fa-users" id="icon"></i>EXPIRED STOCK</a></li>
             <li class="item"><a href="#" class="itemLink"><i class="fas fa-users" id="icon"></i>ACCOUNT</a></li>
-            <li class="item"><a href="logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
+            <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
 
         </ul>
     </div> 
@@ -99,7 +116,7 @@ if(!isset($_SESSION['ROLE'])) {
                     <th>Action</th>
                   </tr>'; } ?>
  <?php
- include 'conect.php';
+ include '../conect.php';
  if(isset($_POST['submit'])){
     $search = $_POST['search'];
     $sql = "select * from items where id like '%$search%' or name like '%$search%'";

@@ -1,4 +1,12 @@
-<!-- sha256: 280e29a1f1b613f86a7a10861dd3d323370e201954c4c5eca15a9a14b2117731 -->
+<?php
+session_start();
+
+// Check if the user is logged in and has a role set in the session
+if(!isset($_SESSION['ROLE'] )) {
+    header("Location: ../login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,12 +42,13 @@
     </nav>
     <div class="sidebar">
         <ul class="list">
-            <li class="item "><a href="main-dashboard.html" class="hov itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
-            <li class="item"><a href="hospital-dashboard.html" class="itemLink"><i class="fas fa-hospital" id="icon"></i>HOSPITAL</a>
-                <li class="item"><a href="school-dashboard.html" class="itemLink"><i class="fas fa-school" id="icon"></i>SCHOOL</a>
+            
+            <li class="item "><a href="\fts\php\adminmain-dashboard.php" class="hov itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
+            <li class="item"><a href="\fts\php\hospital\hospital-dashboard.php" class="itemLink"><i class="fas fa-hospital" id="icon"></i>HOSPITAL</a>
+                <li class="item"><a href="\fts\php\school\school-dashboard.php" class="itemLink"><i class="fas fa-school" id="icon"></i>SCHOOL</a>
                     <li class="item"><a href="users.php" class="itemLink"><i class="fas fa-users" id="icon"></i>MANAGE USERS</a>
 
-            <li class="item"><a href="logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
+            <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
         </ul>
     </div> 
     <section>

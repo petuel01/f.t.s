@@ -80,7 +80,7 @@ header{
 }
 .sublist2 .sublink,
 .sublist .sublink{
-    display: block;
+    display: none;
     height: 100%;
     line-height: 29px;
     font-size: 14px;
@@ -493,6 +493,7 @@ color: white;
     background: red;
     width: 3.5rem;
 }
+
 .btn{
 background: red;
 }
@@ -542,4 +543,5 @@ select{
      
      height: 3rem;
 }
+
 

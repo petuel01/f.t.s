@@ -1,3 +1,12 @@
+<?php
+session_start();
+include '../conect.php';
+// Check if the user is logged in and has a role set in the session
+if(!isset($_SESSION['ROLE'])) {
+    header("Location: \fts\php\login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,13 +40,15 @@
         </nav>
     <div class="sidebar">
         <ul class="list">
-            <li class="item "><a href="main-dashboard.html" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>MAIN DASHBOARD</a></li>
-            <li class="item "><a href="main-dashboard.html" class="hov itemLink "><i class="fas fa-school" id="icon"></i>DASHBOARD</a></li>
-            <li class="item"><a href="hospital-dashboard.html" class="itemLink"><i class="fas fa-list" id="icon"></i>VIEW  RECORDS</a>
-                <li class="item"><a href="addrecords.html" class="itemLink"><i class="fas fa-plus" id="icon"></i>ADD RECORDS</a>
+        <?php if($_SESSION['ROLE'] == 'admin') {
+        echo'
+            <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>MAIN DASHBOARD</a></li>'; } ?>
+            <li class="item "><a href="main-dashboard.php" class="hov itemLink "><i class="fas fa-school" id="icon"></i>DASHBOARD</a></li>
+            <li class="item"><a href="hospital-dashboard.php" class="itemLink"><i class="fas fa-list" id="icon"></i>VIEW  RECORDS</a>
+                <li class="item"><a href="addrecords.php" class="itemLink"><i class="fas fa-plus" id="icon"></i>ADD RECORDS</a>
                     <li class="item"><a href="expense.html" class="itemLink"><i class="fas fa-money-alt" id="icon"></i>EXPENCES</a>
 
-            <li class="item"><a href="logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
+                    <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
         </ul>
     </div> 
     <section>

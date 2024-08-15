@@ -1,6 +1,6 @@
 <?php
 // conecting to database and stooring the products
-include 'conect.php'; 
+include '../conect.php'; 
 
 // SQL query to create the table if it doesn't exist
 $sql = "CREATE TABLE IF NOT EXISTS sales (

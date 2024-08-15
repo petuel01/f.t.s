@@ -1,5 +1,5 @@
 <?php
-        include 'conect.php';
+        include '../conect.php';
              //updatting product after editinh
              $update_id = $_POST['up_id'];
              $name = $_POST['name'];
